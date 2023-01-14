@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/config");
+const sequelize = require("../config/connection");
 
 class Comment extends Model {}
 
@@ -9,38 +9,41 @@ Comment.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
+      allowNull: false,
     },
     commentContent: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
     },
-    dateCreated: {
-      type: DataTypes.DATEONLY,
+    createdAt: {
+      type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id"
-      }
+        model: "users",
+        key: "id",
+      },
+      onDelete: "cascade",
     },
     postId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "post",
-        key: "id"
-      }
-    }
+        model: "posts",
+        key: "id",
+      },
+      onDelete: "cascade",
+    },
   },
   {
     sequelize,
-    modelName: "comment",
-    freezeTableName: true,
-    timestamps: false
+    modelName: "comments",
+    tableName: "comments",
+    timestamps: true,
+    createdAt: "createdAt",
+    updatedAt: false,
   }
 );
 
