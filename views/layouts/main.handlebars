@@ -1,28 +1,42 @@
-
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="/">Homepage</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li>
-                {{#if logged_in }}
-                    <a href="/logout">Logout</a>
-                {{else}}
-                    <a href="/login">Login</a>
-                {{/if}}
-            </li>
-        </ul>
-    </nav>
-    <main>
-        {{{ body }}}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tech Bloggy</title>
+  </head>
+  <body class="main">
+    <div class="topPart">
+      <div>
+        <nav>
+          {{#if logged_in}}
+            <a href="/" class="topButtons">Home</a>
+            <a href="/post" class="topButtons">New Post</a>
+            <a href="/profile" class="topButtons">Profile</a>
+            <a href="/logout" class="topButtons">Logout</a>
+          {{else}}
+            <a href="/" class="topButtons">Home</a>
+            <a href="/login" class="topButtons">Login</a>
+            <a href="/signup" class="topButtons">Sign Up</a>
+          {{/if}}
+        </nav>
+      </div>
+      <div>
+        <header>
+          <a href="/" id="titleButton">Tech Blog</a>
+        </header>
+      </div>
+    </div>
+    <main class="main">
+      {{{body}}}
     </main>
-</body>
-</html> 
+  </body>
+</html>
