@@ -1,23 +1,35 @@
-async function signupFormHandler(event) {
+const signUpHandler = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const username = formData.get('username').trim();
-    const email = formData.get('email').trim();
-    const password = formData.get('password').trim();
-    
-    if (username && email && password) {
+
+    const formData = {
+        name: document.getElementById('signupname').value.trim(),
+        email: document.getElementById('signupemail').value.trim(),
+        password: document.getElementById('signuppw').value.trim()
+    };
+
+    if (formData.name && formData.email && formData.password) {
         try {
-            const response = await fetch('/api/users', {
+            const response = await fetch('/api/signup', {
                 method: 'POST',
-                body: JSON.stringify({ username, email, password }),
-                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+                headers: { 'Content-Type': 'application/json'}
             });
-            if (!response.ok) throw Error(response.statusText);
-            document.location.replace('/dashboard');
-        } catch (err) {
-            alert(err);
+            if (response.ok) {
+                document.location.replace('/');
+            } else {
+                const data = await response.json();
+                throw new Error(data.message);
+            }
+        } catch(err) {
+            console.error(err);
+            // Add error handling for user here
         }
+    } else {
+        // Add error handling for missing fields here
     }
-    }
-    document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+}
+
+const signUpForm = document.getElementById('signupform');
+signUpForm.addEventListener('submit', signUpHandler);
+
    
