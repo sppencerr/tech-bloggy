@@ -1,0 +1,43 @@
+<template>
+  <div class="post-container">
+    <div class="post">
+      <div class="post-header">
+        <h2 class="post-title" id="title">{{ post_title }}</h2>
+        <p>By: {{ user.name }} on {{ formatDate(date_posted) }}</p>
+      </div>
+      <p class="post-text" id="text">{{ post_text }}</p>
+      <template v-if="logged_in">
+        <button class="add-comment-button" id="comment-button">Add Comment</button>
+      </template>
+    </div>
+    <div class="comments-container">
+      <div v-for="(comment, index) in comments" :key="index" class="comment-section">
+        <p class="comment-text" id="comment-text">{{ comment.comment_text }}</p>
+        <p class="comment-user" id="comment-user">- {{ comment.user.name }}</p>
+      </div>
+    </div>
+    <template v-if="logged_in">
+      <div class="modal-container" id="comment-modal">
+        <div class="modal-content">
+          <form class="add-comment-form" id="newCommentForm">
+            <h2>Add A Comment</h2>
+            <input type="hidden" name="post-id" :value="post.id" id="postID" />
+            <textarea class="comment-textarea" id="commentText"></textarea>
+            <button class="submit-comment-button" type="submit">Add Comment</button>
+            <button class="close-modal-button" id="comment-close">&times;</button>
+          </form>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>
+<script>
+export default {
+  props: ["post", "comments", "logged_in"],
+  methods: {
+    formatDate(date) {
+      // format the date and return it
+    }
+  }
+};
+</script>

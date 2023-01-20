@@ -1,23 +1,18 @@
-<a href="/dashboard" class="text-blue-500"> &larr; Back to dashboard</a>
-
-<article class="bg-white p-6 rounded-lg">
-  <div class="text-2xl font-medium">
-    Create New Post
-  </div>
-  <div class="mt-4">
-     <form class="new-post-form">
-      <div class="mt-4">
-        <label for="post-title" class="block text-gray-700 font-medium mb-2">Post Title</label>
-        <input type="text" id="post-title" name="post-title" class="border border-gray-400 p-2 rounded-lg w-full"/>
+<template>
+  <div class="form-container">
+    <h2 class="form-title" id="welcome">What's On Your Mind?</h2>
+    <form class="new-post-form" id='post-form'>
+      <div class="form-group">
+        <label for="post-title" class="form-label">Title:</label>
+        <input class="form-input" name="post-title" type="text" id="post-title">
       </div>
-      <div class="mt-4">
-        <label for="post_text" class="block text-gray-700 font-medium mb-2">Post</label>
-        <textarea id="post_text" name="post_text" class="border border-gray-400 p-2 rounded-lg w-full h-32"></textarea>
+      <div class="form-group">
+        <textarea class="form-textarea" id="post-text"></textarea>
       </div>
-      <button type="submit" class="btn bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 hover:bg-blue-600">Create Post</button>
+      <div class="form-group">
+        <button class="form-submit" type="submit">Post</button>
+      </div>
     </form>
   </div>
-</article>
-{{#if loggedIn}}
-<script src="/js/create-post.js"></script>
-{{/if}}
+</template>
+<script src="./js/newPost.js"></script>

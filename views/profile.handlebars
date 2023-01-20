@@ -1,0 +1,42 @@
+<template>
+  <section class="profile-section">
+    <h2 class="profile-name" id="profile-name">Hi, {{ name }}!</h2>
+    <h2 class="posts-title" id="posts">Your Posts</h2>
+    <div class="post-list-container">
+      <template v-for="(post, index) in posts" :key="index">
+        <div class="post-card" :value="post.id">
+          <p class="post-card-title" id="postTitle">{{ post.post_title }}</p>
+          <p>Date: {{ formatDate(post.date_posted) }}</p>
+          <p class="post-card-text" id="post_text">{{ post.post_text }}</p>
+          <button class="post-card-button edit-button" :button-id="post.id">Edit</button>
+          <button class="post-card-button delete-button" :delete-id="post.id" :value="post.id">Delete</button>
+        </div>
+        <div class="edit-modal-container">
+          <div class="modal-content">
+            <form id = "editForm">
+            <h2>Edit Your Post</h2>
+            <p>Title:</p>
+            <input class="modal-input" type="text" id="editTitle"  :value="post.post_title">
+            <p>Text:</p>
+            <input class="modal-input" type="text" id="editText"  :value="post.post_text">
+            <input class="modal-submit" type="submit" value="Finish">
+            <input type="hidden" name="edit-id" :value="post.id" id= "postID"/>
+            <span class="modal-close" id="comment-close">&times;</span>
+            </form>
+          </div>
+        </div>
+      </template>
+    </div>
+  </section>
+</template>
+<script>
+export default {
+  props: ["posts"],
+  methods: {
+    formatDate(date) {
+      // format the date and return it
+    }
+  }
+};
+</script>
+<script type="text/javascript" src="/js/editAndDelete.js"></script>

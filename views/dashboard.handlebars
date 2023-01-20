@@ -1,0 +1,21 @@
+<template>
+  <div class="posts-container">
+    <div v-for="(post, index) in posts" :key="index" class="post-card">
+      <div class="post-card-header">
+        <a class="post-card-title" :href="`/post/${post.id}`">{{ post.post_title }}</a>
+        <p class="post-card-user">By: {{ post.user.name }} on {{ formatDate(post.date_posted) }}</p>
+      </div>
+      <p class="post-card-text">{{ post.post_text }}</p>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  props: ["posts"],
+  methods: {
+    formatDate(date) {
+      // format the date and return it
+    }
+  }
+};
+</script>

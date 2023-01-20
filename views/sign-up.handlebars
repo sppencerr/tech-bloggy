@@ -1,39 +1,23 @@
-<div class='card'>
-  <h2 class='card-header'>Sign up</h2>
-  <form class='card-body signup-form'>
-    <div class='form-group'>
-      <label class='form-label'>Username:</label>
-      <input class='form-input' type='text' name='username'/>
-    </div>
-    <div class='form-group'>
-      <label class='form-label'>Password:</label>
-      <input class='form-input' type='password' name='password'/>
-    </div>
-    <div class='form-group'>
-      <button class='btn btn-primary' type='submit'>Sign up</button>
-    </div>
-  </form>
-  <br />
-  <a href='/login'>Login</a>
-</div>
-<script>
-async function signupFormHandler(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const username = formData.get('username');
-    const password = formData.get('password');
-
-try {
-    const response = await fetch('/api/users', {
-        method: 'POST',
-        body: JSON.stringify({ username, password }),
-        headers: { 'Content-Type': 'application/json' },
-    });
-    if (!response.ok) throw Error(response.statusText);
-    document.location.replace('/dashboard');
-} catch (err) {
-    alert(err);
-}
-}
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-</script>
+<template>
+  <div class="form-container">
+    <p class="form-welcome" id="welcome">Join our community of tech enthusiasts!</p>
+    <form class="signup-form" id="signupform">
+      <div class="form-group">
+        <label for="name" class="form-label">Name:</label>
+        <input class="form-input" type="text" name="name" id="signupname">
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Email:</label>
+        <input class="form-input" name="email" id="signupemail">
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Password:</label>
+        <input class="form-input" name="password" type="password" id="signuppw">
+      </div>
+      <div class="form-group">
+        <button class="form-submit" type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</template>
+<script src="./js/signUp.js"></script>
