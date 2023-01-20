@@ -25,7 +25,7 @@ const handleEditForm = async(event) => {
     if (response.ok) {
         document.location.reload()
     } else {
-        console.log('not good')
+        console.log('Okay that did not work')
     }
 }
 
